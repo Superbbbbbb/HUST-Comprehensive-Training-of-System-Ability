@@ -36,5 +36,6 @@
 #define rtl_jr        concat(RTL_PREFIX, _rtl_jr      )
 #define rtl_jrelop    concat(RTL_PREFIX, _rtl_jrelop  )
 #define rtl_exit      concat(RTL_PREFIX, _rtl_exit    )
+#define rtl_mul_hsu   concat(RTL_PREFIX, _rtl_mul_hsu )
 
 #endif

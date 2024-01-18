@@ -1,4 +1,4 @@
 NAME := amtest
 SRCS := $(shell find -L ./src/ -name "*.c")
-
+ARCH= riscv32-nemu
 include $(AM_HOME)/Makefile.app

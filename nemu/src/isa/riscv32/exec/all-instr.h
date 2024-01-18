@@ -7,3 +7,10 @@ make_EHelper(st);
 
 make_EHelper(inv);
 make_EHelper(nemu_trap);
+
+make_EHelper(auipc);
+make_EHelper(jal);
+make_EHelper(jalr);
+make_EHelper(R);
+make_EHelper(I);
+make_EHelper(B);
