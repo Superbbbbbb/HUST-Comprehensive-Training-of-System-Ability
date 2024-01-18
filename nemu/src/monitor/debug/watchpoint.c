@@ -69,7 +69,7 @@ void free_wp(uint32_t n) {
       if (pre->next == NULL) {
         printf("Didn't find number %u watchpoint\n", n);
         break;
-      }
+     }
       if(pre->next->NO == n){
         wp = pre->next;
         pre->next = pre->next->next;

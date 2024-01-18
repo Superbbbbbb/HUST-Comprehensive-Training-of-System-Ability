@@ -2,7 +2,7 @@ NAME = nanos-lite
 SRCS = $(shell find -L ./src/ -name "*.c" -o -name "*.cpp" -o -name "*.S")
 LIBS = klib
 PREBUILD = update
-
+ARCH = riscv32-nemu
 include $(AM_HOME)/Makefile.app
 
 ifeq ($(ARCH),native)
@@ -33,5 +33,5 @@ update-ramdisk-fsimg: update-fsimg
 src/syscall.h: $(NAVY_HOME)/libs/libos/src/syscall.h
 	ln -sf $^ $@
 
-update: update-ramdisk-single src/syscall.h
+update: update-ramdisk-fsimg src/syscall.h
 	@touch src/initrd.S

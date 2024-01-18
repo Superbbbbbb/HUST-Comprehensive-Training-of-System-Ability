@@ -1,7 +1,6 @@
 include $(AM_HOME)/Makefile.check
 .PHONY: all run clean latest $(ALL)
 
-ARCH = riscv32-nemu
 ALL = $(basename $(notdir $(shell find tests/. -name "*.c")))
 
 all: $(addprefix Makefile., $(ALL))

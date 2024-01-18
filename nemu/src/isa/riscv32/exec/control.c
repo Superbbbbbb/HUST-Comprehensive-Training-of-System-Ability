@@ -24,3 +24,4 @@ make_EHelper(B) {
         default: assert(!"Unfind branch opcode"); break;
     }
 }
+

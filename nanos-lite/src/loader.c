@@ -1,5 +1,6 @@
 #include "proc.h"
 #include <elf.h>
+#include "fs.h"
 
 #ifdef __ISA_AM_NATIVE__
 # define Elf_Ehdr Elf64_Ehdr
@@ -10,11 +11,27 @@
 #endif
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  TODO();
-  return 0;
+  //TODO();
+  Elf_Ehdr Ehdr;
+  int fd = fs_open(filename, 0, 0);
+  fs_lseek(fd, 0, SEEK_SET);
+  fs_read(fd, &Ehdr, sizeof(Ehdr));
+  for(int i = 0; i < Ehdr.e_phnum; i++){
+    Elf_Phdr Phdr;
+    fs_lseek(fd, Ehdr.e_phoff + i*Ehdr.e_phentsize, SEEK_SET);
+    fs_read(fd, &Phdr, sizeof(Phdr));
+    if(Phdr.p_type == PT_LOAD){
+      fs_lseek(fd, Phdr.p_offset, SEEK_SET);
+      fs_read(fd, (void*)Phdr.p_vaddr, Phdr.p_filesz);
+      memset((void*)(Phdr.p_vaddr+Phdr.p_filesz),0,(Phdr.p_memsz-Phdr.p_filesz));
+    }
+  }
+  fs_close(fd);
+  return Ehdr.e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
+Log("naive load");
   uintptr_t entry = loader(pcb, filename);
   Log("Jump to entry = %x", entry);
   ((void(*)())entry) ();

@@ -12,7 +12,7 @@ else
 fi
 
 echo "compiling testcases..."
-if make -C $AM_HOME/tests/cputest ARCH=$ISA-nemu &> /dev/null; then
+if make -C $AM_HOME/tests/amtest ARCH=$ISA-nemu &> /dev/null; then
   echo "testcases compile OK"
 else
   echo "testcases compile error... exit..."

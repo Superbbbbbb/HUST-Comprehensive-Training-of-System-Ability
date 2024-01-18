@@ -14,3 +14,4 @@ make_EHelper(jalr);
 make_EHelper(R);
 make_EHelper(I);
 make_EHelper(B);
+make_EHelper(system);

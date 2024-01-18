@@ -10,12 +10,12 @@ typedef struct watchpoint {
   /* TODO: Add more members if necessary */
   char e[32];
   uint32_t value;
+
 } WP;
 
-WP* new_wp(char*);
-void free_wp(uint32_t);
+WP* new_wp(char* );
+void free_wp(uint32_t );
 void watchpoint_display();
 bool check_watchpoint();
 
 #endif
-
